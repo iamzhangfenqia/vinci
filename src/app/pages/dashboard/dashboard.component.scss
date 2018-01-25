@@ -1,0 +1,80 @@
+@import '../../@theme/styles/themes';
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/bootstrap/breakpoints';
+
+@include nb-install-component() {
+  .solar-card nb-card-header {
+    border: none;
+    padding-bottom: 0;
+  }
+
+  @include media-breakpoint-down(sm) {
+    ngx-traffic {
+      display: none;
+    }
+  }
+
+  @include media-breakpoint-down(is) {
+    /deep/ nb-card.large-card {
+      height: nb-theme(card-height-medium);
+    }
+  }
+
+
+
+  .font-row {
+    .header {
+      align-items: baseline;
+    }
+
+    p {
+      margin: 0;
+      padding-left: 1rem;
+
+    }
+  }
+
+  .header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid nb-theme(separator);
+    border-left: 3px solid nb-theme(separator);
+    color: nb-theme(color-fg-heading);
+  }
+
+}
+
+
+.input-group.has-find-icon {
+  position: relative;
+
+  .form-control {
+    padding-left: 3rem;
+  }
+
+  &::before {
+    content: '\f4a5';
+    font-family: 'Ionicons';
+    font-size: 2rem;
+    position: absolute;
+    z-index: 100;
+    left: 1rem;
+    top: 0.25rem;
+  }
+}
+
+
+.input-group {
+  margin-bottom: 1rem;
+}
+.btn-add {
+  margin-left: 30px;
+}
+.btn-submit{
+  text-align: center;
+  margin-bottom: 1rem;
+}
