@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-header>
+        <h4>输入一段想要分析的文字：</h4>
+      </nb-card-header>
+      <nb-card-body>
+        <div class="input-group">
+          <textarea rows="5" placeholder="please input ..." class="form-control" [formControl]="srcText"></textarea>
+        </div>
+        <span>{{srcTextContent}}</span>
+        <button type="submit" class="btn btn-hero-info btn-demo btn-sm analyseSubmit" (click)="sendSrcText()">提交文本</button>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-header>
+        <h4>情感分析</h4>
+      </nb-card-header>
+      <nb-card-body>
+        <div class="row">
+          <div class="col-md-7">
+            <div echarts [options]="pieoptions" class="demo-chart"></div>
+          </div>
+          <div class="col-md-5">
+            <h6>分析理由：</h6>
+            <p class="reason">巴拉巴拉巴拉，一大堆理由。。。</p>
+          </div>
+        </div>
+
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-header>
+        <h4>领域分析</h4>
+      </nb-card-header>
+      <nb-card-body>
+        <div class="row">
+          <div class="col-md-7">
+            <div echarts [options]="radaroptions" class="demo-chart"></div>
+          </div>
+          <div class="col-md-5">
+            <h6>分析理由：</h6>
+            <p class="reason">巴拉巴拉巴拉，一大堆理由。。。</p>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-header>
+        <div class="row">
+          <div class="col-md-7">
+            <h4>新闻摘要</h4>
+          </div>
+          <div class="col-md-5">
+            <button class="btn btn-hero-info btn-demo btn-tn">50%</button>
+            <button class="btn btn-hero-info btn-demo btn-tn">40%</button>
+            <button class="btn btn-hero-info btn-demo btn-tn">30%</button>
+            <button class="btn btn-hero-info btn-demo btn-tn">20%</button>
+          </div>
+        </div>
+      </nb-card-header>
+      <nb-card-body>
+        <p>123546654321123456654321....</p>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-header>
+        <h4>关键字</h4>
+      </nb-card-header>
+      <nb-card-body>
+        <div echarts [options]="cloudoption" class="demo-chart" style="height:400px;"></div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

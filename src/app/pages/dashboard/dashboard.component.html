@@ -4,17 +4,18 @@
       <nb-card-header>
         <div class="input-group has-find-icon">
           <input type="text" placeholder="请输入搜索内容" class="form-control"  [formControl]="searchContent"/>
-          <button type="submit" class="btn btn-success btn-add" (click)="isAddKeywordHidden = !isAddKeywordHidden">添加关键字</button>
+          <span class="input-group-btn">
+            <button class="btn btn-success"  [routerLink]="['/pages/searchcontent', search ]">Go</button>
+          </span>
+          <button type="submit" class="btn btn-warning btn-add" (click)="isAddKeywordHidden = !isAddKeywordHidden">添加限定字</button>
         </div>
-      </nb-card-header>
-      <nb-card-body>
         <div [hidden]="isAddKeywordHidden" class="row full-name-inputs">
           <div class="col-sm-6 input-group">
             <input type="text" placeholder="关键字" class="form-control" [(ngModel)]="newWord"/>
           </div>
           <div class="col-sm-6 input-group">
             <!--<button type="submit" class="btn btn-success" (click)="addKeyword()">添加</button>-->
-            <button type="button" class="btn btn-warning btn-icon" (click)="addKeyword()">
+            <button type="button" class="btn btn-warning btn-icon" (click)="addLimitiword()">
               <i class="ion-checkmark-round"></i>
             </button>
           </div>
@@ -22,26 +23,14 @@
         <div>
           <span *ngFor="let key of newWords">{{key}}</span>
         </div>
-
-        <div class="btn-submit">
-          <button type="submit" class="btn btn-success" (click)="submit()">提交</button>
-        </div>
-
-        <div class="font-row font-main" *ngFor="let title of titles">
-          <div class="header">
-           {{title}}
-          </div>
-          <p>
-            {{maps[title]}}
-          </p>
-
-        </div>
-
-      </nb-card-body>
+      </nb-card-header>
     </nb-card>
 
   </div>
   <div class="col-xxxl-3 col-xxl-3 col-md-4">
     <ngx-weather></ngx-weather>
+  </div>
+  <div class="col-md-8">
+    <div echarts [options] = "options" class="demo-chart" style="height: 200px;"></div>
   </div>
 </div>

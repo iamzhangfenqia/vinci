@@ -1,0 +1,45 @@
+@import '../../@theme/styles/themes';
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/bootstrap/breakpoints';
+
+@include nb-install-component() {
+
+  .font-row {
+    .header {
+      align-items: baseline;
+    }
+
+    p {
+      margin: 0;
+      padding-left: 1rem;
+      text-indent: 2rem;
+    }
+  }
+
+  .header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid nb-theme(separator);
+    border-left: 3px solid nb-theme(separator);
+    color: nb-theme(color-fg-heading);
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
+
+  .input-group {
+    margin-bottom: 1rem;
+  }
+
+  .table-body {
+    display: block;
+    width:780px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+}

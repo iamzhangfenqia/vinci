@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {SearchContentComponent} from './searchContent/searchContent.component';
+import {SearchGuard} from './guard/search.guard';
+import {AnalyseComponent} from './analyse/analyse.component';
 
 const routes: Routes = [{
   path: '',
@@ -11,6 +14,14 @@ const routes: Routes = [{
     path: 'dashboard',
     component: DashboardComponent,
   }, {
+    path: 'analyse',
+    component: AnalyseComponent,
+  }, {
+    path: 'searchcontent/:searchUrl',
+    component: SearchContentComponent,
+   /* canActivate: [SearchGuard],*/
+  },
+    {
     path: 'ui-features',
     loadChildren: './ui-features/ui-features.module#UiFeaturesModule',
   }, {
@@ -41,6 +52,7 @@ const routes: Routes = [{
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
+  providers: [SearchGuard],
 })
 export class PagesRoutingModule {
 }

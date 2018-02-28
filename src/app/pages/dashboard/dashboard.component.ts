@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import {Http} from '@angular/http';
 import 'rxjs/Rx';
+import {NbThemeService} from '@nebular/theme';
 
 @Component({
   selector: 'ngx-dashboard',
@@ -14,11 +15,10 @@ export class DashboardComponent implements OnInit {
   isAddKeywordHidden: boolean = true;
   newWord: string = '';
   newWords: string[] = [''];
-  dataSource: Observable<any>;
-  titles: Array<string>;
   maps: Map<string, string>;
   searchContent: FormControl = new FormControl();
-
+  options: any = {};
+  themeSubscription: any;
   constructor(private http: Http) {
     this.searchContent.valueChanges
       .debounceTime(500)
@@ -27,27 +27,10 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  addKeyword() {
+  addLimitiword() {
     const wordContent = this.newWord;
     this.newWords.unshift(wordContent);
     this.isAddKeywordHidden = true;
     this.newWord = '';
-  }
-
-  submit() {
-    this.maps = new Map<string, string>();
-    this.titles = new Array<string>();
-    this.dataSource = this.http.get('/zoom/getInfo', { params: {'url': this.search}}).map( (res) => res.json());
-    this.dataSource.subscribe( (data) => {
-      for (const value in data) {
-        if (value) {
-          console.log(value);
-          console.log(data[value]);
-          this.titles.push(value);
-          this.maps[value] = data[value];
-        }
-      }
-    },
-  );
   }
 }

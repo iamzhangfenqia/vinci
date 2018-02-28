@@ -5,6 +5,7 @@ import { FormsComponent } from './forms.component';
 import { FormInputsComponent } from './form-inputs/form-inputs.component';
 import { FormLayoutsComponent } from './form-layouts/form-layouts.component';
 
+
 const routes: Routes = [{
   path: '',
   component: FormsComponent,

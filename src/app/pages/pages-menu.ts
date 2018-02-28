@@ -12,6 +12,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     group: true,
   },
   {
+    title: '新闻分析',
+    icon: 'nb-home',
+    link: '/pages/analyse',
+  },
+  {
     title: '数据收集',
     icon: 'nb-keypad',
     link: '/pages/ui-features',

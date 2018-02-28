@@ -1,0 +1,82 @@
+<div class="row">
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-header>
+        <span>搜索:{{searchUrl}}</span>
+        <span style="float: right">共{{totalCount}}个结果</span>
+      </nb-card-header>
+      <nb-card-body>
+        <div class="row">
+          <div class="col-lg-7 col-md-12 col-sm-12">
+            <button class="btn btn-hero-success btn-demo btn-sm">统计</button>
+
+            <button class="btn btn-hero-success btn-demo btn-sm" (click)="showFilterModal()">筛选</button>
+            <button class="btn btn-hero-success btn-demo btn-sm" (click)="showDownloadModal()">下载</button>
+            <button class="btn btn-hero-success btn-demo btn-sm">高级</button>
+          </div>
+          <div class="col-lg-5 col-md-12 col-sm-12">
+            <button class="btn btn-hero-default btn-demo btn-tn">首页</button>
+            <button class="btn btn-hero-default btn-demo btn-tn" (click)="prevPage()">上页</button>
+            <button class="btn btn-hero-default btn-demo btn-tn" (click)="nextPage()">下页</button>
+            <button class="btn btn-hero-default btn-demo btn-tn">末页</button>
+          </div>
+        </div>
+
+
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th width="10%">序号</th>
+            <th width="10%">#</th>
+            <th>主体内容</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let info of infoIndex;">
+            <td>{{info}}</td>
+            <td><a (click)="showDetailModal(infoData['info'][info])" style="cursor: pointer;color: #3dcc6d;">全文</a></td>
+            <td class="table-body">{{infoData['info'][info]['text']}}</td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="pagination-container" style="float:right;">
+          <div class="btn-group btn-toggle-group btn-outline-toggle-group" data-toggle="buttons"
+               [(ngModel)]="paginationModel" ngbRadioGroup>
+            <label ngbButtonLabel class="btn btn-outline-success" (click)="prevPage()">
+              <i class="ion-chevron-left"></i>
+            </label>
+            <div *ngIf="totalPages>3; then planA else planB"></div>
+            <ng-template #planA>
+              <label ngbButtonLabel class="btn btn-outline-success">
+                <input ngbButton type="radio" [value]="firstPage" (click)="showPage(firstPage)"> {{firstPage}}
+              </label>
+              <label ngbButtonLabel class="btn btn-outline-success">
+                <input ngbButton type="radio" [value]="firstPage+1" (click)="showPage(firstPage+1)"> {{firstPage+1}}
+              </label>
+              <label ngbButtonLabel class="btn btn-outline-success">
+                <input ngbButton type="radio" [value]="firstPage+2" (click)="showPage(firstPage+2)"> {{firstPage+2}}
+              </label>
+              <label ngbButtonLabel class="btn btn-outline-success">
+                <input ngbButton type="radio" [value]="firstPage+3" (click)="showPage(firstPage+3)"> {{firstPage+3}}
+              </label>
+            </ng-template>
+            <ng-template #planB>
+              <label ngbButtonLabel class="btn btn-outline-success" *ngFor="let page of pagesArray;let i = index;">
+                <input ngbButton type="radio" [value]="firstPage+i" (click)="showPage(firstPage+i)"> {{firstPage+i}}
+              </label>
+            </ng-template>
+
+            <label ngbButtonLabel class="btn btn-outline-success" (click)="nextPage()">
+              <i class="ion-chevron-right"></i>
+            </label>
+            <!--<i class="ion-chevron-right"></i>-->
+          </div>
+        </div>
+      </nb-card-body>
+
+
+
+    </nb-card>
+
+  </div>
+</div>
