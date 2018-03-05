@@ -29,20 +29,6 @@ export class SearchContentComponent implements OnInit {
   infoIndex: Array<string> ;
   infoData: string;
   pagesArray: Array<number>;
-  public tableContents: any = [
-    {
-      id: '1',
-      body: '宽地阔，消除一切困难，解除一切纠葛前天除一切困难，解除一切纠葛前天除一切困难，解除一切纠葛前天除一切困难，解除一切纠葛前天通宵，昨天一天都废了',
-    },
-    {
-      id: '2',
-      body: 'mvIS6我的了病很严重坐等午餐，不知为什么，眼睛哈酸…每晚',
-    },
-    {
-      id: '3',
-      body: '宽地阔，消除一切困难，解除一切纠葛前天通宵，昨天一天都废了天都废了',
-    },
-  ];
   constructor(private routerInfo: ActivatedRoute, private http: Http
   , private buttonModalService: NgbModal) {
   }
@@ -58,6 +44,9 @@ export class SearchContentComponent implements OnInit {
      this.infoData = data;
      this.totalCount = data['counts'];
      this.totalPages = this.totalCount / this.pageCounts;
+     /*if (this.totalCount - this.totalPages * this.pageCounts > 0) {
+       this.totalPages = this.totalPages + 1;
+     }*/
      if (this.totalPages < 4) {
        this.pagesArray = new Array(this.totalPages);
      }
@@ -88,19 +77,20 @@ export class SearchContentComponent implements OnInit {
     downloadModal.componentInstance.modalContent = '';
   }
   showDetailModal(id: any) {
+    /*console.log(id);*/
     const detailModal = this.buttonModalService.open(DetailModalComponent, {
       size: 'lg',
       backdrop: 'static',
       container: 'nb-layout',
     });
-    detailModal.componentInstance.modalHeader = '预览';
+    detailModal.componentInstance.modalHeader = '详情';
     detailModal.componentInstance.modalContent = id;
   }
   nextPage() {
-    if (this.curPage + 1 <= this.totalPages) {
+    if (this.curPage < this.totalPages ) {
       this.curPage += 1;
       this.paginationModel = this.paginationModel + 1;
-      if (this.paginationModel > 4) {
+      if (this.paginationModel > 4 && this.paginationModel > this.firstPage + 3) {
         this.firstPage += 1;
       }
       /*将下一页的页号传给服务器*/
@@ -108,14 +98,14 @@ export class SearchContentComponent implements OnInit {
       this.dataSourse = this.http.get('/zoom/search', {params: {'keyword': this.searchUrl, 'page': this.curPage}})
         .map((res) => res.json());
       this.dataSourse.subscribe((data) => {
-        console.log(data['counts']);
-        console.log(data);
+        /*console.log(data['counts']);
+        console.log(data);*/
         this.infoData = data;
         /*console.log(data['info']);*/
         for (const info in data['info']) {
           if (info) {
             this.infoIndex.push(info);
-            console.log('nextPage ' + info);
+           /* console.log('nextPage ' + info);*/
           }
         }
       });

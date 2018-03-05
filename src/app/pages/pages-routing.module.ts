@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {SearchContentComponent} from './searchContent/searchContent.component';
 import {SearchGuard} from './guard/search.guard';
 import {AnalyseComponent} from './analyse/analyse.component';
+import {DetailAnalyseComponent} from './detailAnalyse/detailAnalyse.component';
 
 const routes: Routes = [{
   path: '',
@@ -14,14 +15,16 @@ const routes: Routes = [{
     path: 'dashboard',
     component: DashboardComponent,
   }, {
+    path: 'analyseDetail/:safeUrl',
+    component: DetailAnalyseComponent,
+  }, {
     path: 'analyse',
     component: AnalyseComponent,
   }, {
     path: 'searchcontent/:searchUrl',
     component: SearchContentComponent,
-   /* canActivate: [SearchGuard],*/
-  },
-    {
+    /* canActivate: [SearchGuard],*/
+  }, {
     path: 'ui-features',
     loadChildren: './ui-features/ui-features.module#UiFeaturesModule',
   }, {

@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { AngularEchartsModule } from 'ngx-echarts';
 
 import { ThemeModule } from '../../@theme/theme.module';
-import {DetailModalComponent} from './detailModal/detailmodal.component';
 import {RouterModule} from '@angular/router';
+import {DetailAnalyseComponent} from './detailAnalyse.component';
 
 
 @NgModule({
@@ -12,7 +12,7 @@ import {RouterModule} from '@angular/router';
     AngularEchartsModule,
     RouterModule,
   ],
-  declarations: [DetailModalComponent],
+  declarations: [DetailAnalyseComponent],
 })
 /*export class DashboardModule { }*/
-export class SearchContentModule { }
+export class DetailAnalyseModule { }

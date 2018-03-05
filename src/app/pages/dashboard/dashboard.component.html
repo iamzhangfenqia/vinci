@@ -5,11 +5,11 @@
         <div class="input-group has-find-icon">
           <input type="text" placeholder="请输入搜索内容" class="form-control"  [formControl]="searchContent"/>
           <span class="input-group-btn">
-            <button class="btn btn-success"  [routerLink]="['/pages/searchcontent', search ]">Go</button>
+            <button class="btn btn-success" [routerLink]="['/pages/searchcontent', search ]">Go</button>
           </span>
           <button type="submit" class="btn btn-warning btn-add" (click)="isAddKeywordHidden = !isAddKeywordHidden">添加限定字</button>
         </div>
-        <div [hidden]="isAddKeywordHidden" class="row full-name-inputs">
+        <div [hidden]="isAddKeywordHidden" class="row full-name-inputs" style="transition:2s linear all;">
           <div class="col-sm-6 input-group">
             <input type="text" placeholder="关键字" class="form-control" [(ngModel)]="newWord"/>
           </div>

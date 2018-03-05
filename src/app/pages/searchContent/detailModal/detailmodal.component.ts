@@ -7,7 +7,10 @@ import {DomSanitizer} from '@angular/platform-browser';
   styleUrls: ['./detailmodal.component.scss'],
   template: `
     <div class="modal-header">
-      <span>{{ modalHeader }}</span>
+      <span style="font-size: 24px;">{{ modalHeader }}</span>
+        <i class="ion-plus-round ion-size" (click)="isHiddenAdd = !isHiddenAdd"></i>
+        <input type="text" placeholder="关键字" class="form-control" style="width: 200px;height: 10px;" [hidden]="isHiddenAdd"/>
+        <i class="ion-checkmark-circled ion-size" [hidden]="isHiddenAdd" (click)="isHiddenAdd=!isHiddenAdd"></i>
       <button class="close" aria-label="Close" (click)="closeModal()">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -17,16 +20,10 @@ import {DomSanitizer} from '@angular/platform-browser';
         <ul class="list-group">
           <div class="row">
             <div class="col-md-2">
-              <span>原URL</span>
+              <span>链接</span>
             </div>
             <div class="col-md-9">
               <li class="list-group-item">{{modalContent['src']}}</li>
-            </div>
-            <div class="col-md-2">
-              <span>序号</span>
-            </div>
-            <div class="col-md-9">
-              <li class="list-group-item">{{modalContent}}</li>
             </div>
             <div class="col-md-2">
               <span>标题</span>
@@ -38,19 +35,13 @@ import {DomSanitizer} from '@angular/platform-browser';
               <span>时间</span>
             </div>
             <div class="col-md-9">
-              <li class="list-group-item">2017-12-01 20:59:42</li>
+              <li class="list-group-item">{{modalContent['post_time']}}</li>
             </div>
             <div class="col-md-2">
               <span>概述</span>
             </div>
             <div class="col-md-9">
               <li class="list-group-item">{{modalContent['text']}}</li>
-            </div>
-            <div class="col-md-2">
-              <span>链接</span>
-            </div>
-            <div class="col-md-9">
-              <li class="list-group-item">{{modalContent['src']}}</li>
             </div>
             <div class="col-md-2">
               <span>原网页</span>
@@ -72,16 +63,17 @@ import {DomSanitizer} from '@angular/platform-browser';
       </div>
     </div>
     <div class="modal-footer">
-      <button type="submit" class="btn btn-hero-info btn-demo btn-sm">登录</button>
-      <button type="submit" class="btn btn-hero-primary btn-demo btn-sm" (click)="closeModal()">继续下载</button>
+      <button type="submit" class="btn btn-hero-info btn-demo btn-sm" (click)="closeModal()" [routerLink]="['/pages/analyseDetail', modalContent['src']]">分析</button>
+      <button type="submit" class="btn btn-hero-primary btn-demo btn-sm" (click)="closeModal()">关闭</button>
     </div>
   `,
 })
 export class DetailModalComponent implements OnInit {
 
-  modalHeader: string;
+  modalHeader: any;
   modalContent: any;
   isHiddenIframe: boolean = true;
+  isHiddenAdd: boolean = true;
   safeUrl: any;
   constructor(private activeModal: NgbActiveModal, private sanitizer: DomSanitizer) {
   }

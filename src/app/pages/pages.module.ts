@@ -11,6 +11,7 @@ import {DetailModalComponent} from './searchContent/detailModal/detailmodal.comp
 import {IframemodalComponent} from './searchContent/iframelModal/iframemodal.component';
 import {AnalyseComponent} from './analyse/analyse.component';
 import {AngularEchartsModule} from 'ngx-echarts';
+import {DetailAnalyseComponent} from './detailAnalyse/detailAnalyse.component';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -32,6 +33,7 @@ const PAGES_COMPONENTS = [
     DetailModalComponent,
     IframemodalComponent,
     AnalyseComponent,
+    DetailAnalyseComponent,
   ],
 })
 export class PagesModule {
